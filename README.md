@@ -1,17 +1,25 @@
-# AtlasGo - Explore the World, Your Way
+# 🌍 AtlasGo - Intelligent Travel Discovery Platform
 
-**Tagline:** Your intelligent travel companion
+> **Powered by Storyblok CMS & Algolia Search**
 
-## Overview
+[![Next.js](https://img.shields.io/badge/Next.js-14-black)](https://nextjs.org/)
+[![Storyblok](https://img.shields.io/badge/Storyblok-CMS-purple)](https://www.storyblok.com/)
+[![Algolia](https://img.shields.io/badge/Algolia-Search-blue)](https://www.algolia.com/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)](https://www.typescriptlang.org/)
 
-AtlasGo is an intelligent travel platform that combines the power of Storyblok's headless CMS, Algolia's lightning-fast search, and AI to create personalized global travel experiences. Discover amazing places worldwide with smart recommendations, real-time content, and AI-powered trip planning.
+**Built for Storyblok & Algolia Hackathon 2025**
 
-- **Frontend:** Next.js 14 + TypeScript + Tailwind CSS
-- **CMS:** Storyblok
-- **Search:** Algolia (geo-enabled, faceted search)
-- **Map:** Leaflet (open-source)
-- **AI:** GROQ (Llama 3.3) - AI-powered itinerary generation
-- **Deployment:** Vercel
+## 🎯 Overview
+
+AtlasGo is a next-generation travel discovery platform that revolutionizes how people explore and plan trips worldwide. By combining **Storyblok's flexible headless CMS**, **Algolia's lightning-fast search**, and **AI-powered personalization**, we've created an intelligent travel companion that makes trip planning effortless and enjoyable.
+
+### 🏗️ **Tech Stack**
+- **Frontend:** Next.js 14 with App Router, TypeScript, TailwindCSS
+- **CMS:** Storyblok (70+ content items across 8 content types)
+- **Search:** Algolia (sub-50ms response, geo-search, faceted filters)
+- **AI:** GROQ (Llama 3.3 70B) for itinerary generation
+- **Maps:** Leaflet with OpenStreetMap
+- **Deployment:** Railway / Vercel
 
 ## Getting Started
 
@@ -80,44 +88,54 @@ atlasgo/
 └── pages/api/            # API routes (serverless functions)
 ```
 
-## Features
+## ✨ Key Features
 
-### 🔍 Smart Search & Discovery
-- **Lightning-fast search** - Algolia-powered instant results
-- **Geo-location ranking** - Find places near you
-- **Country/City/District hierarchy** - Organized global exploration
-- **Advanced filtering** - Type, price, tags, accessibility
-- **Multiple sort options** - Relevance, rating, popularity, distance
+### 🔍 **Lightning-Fast Search (Powered by Algolia)**
+- **Sub-50ms response time** - Instant search results as you type
+- **Geo-location search** - Find places near you with coordinates
+- **7 Faceted filters** - Country, City, District, Type, Price, Interests, Sort
+- **Typo-tolerance** - Smart search that understands mistakes
+- **Custom ranking** - Relevance, rating, popularity, distance
+- **48+ places** across 6 countries indexed and searchable
 
-### 🗺️ Interactive Maps
-- **Leaflet-based maps** with clustered markers
-- **District exploration** - Browse by neighborhood
-- **Real-time location** - Distance-based results
-- **Visual discovery** - See places on the map
+**How Algolia is Used:**
+- Content from Storyblok is automatically indexed to Algolia
+- Real-time synchronization via custom reindex pipeline
+- Geo-search with latitude/longitude coordinates
+- Advanced filtering with multiple refinement options
+- Optimized index settings for travel search
 
-### 🎯 Personalization
-- **User preferences** - Save your interests
-- **Smart recommendations** - AI-powered suggestions
-- **Customized rankings** - Results tailored to you
-- **Trip planning tips** - Contextual guidance
+### 📝 **Smart Content Management (Powered by Storyblok)**
+- **70+ content items** managed through Storyblok CMS
+- **8 content types**: Places, Travel Guides, Local Tips, Food Guides, Events, Neighborhoods, Collections, Testimonials
+- **Structured content** with custom schemas and relationships
+- **Rich media management** with CDN-optimized images
+- **API-first architecture** for flexible content delivery
 
-### 🤖 AI-Powered Features
-- **Itinerary generation** - GROQ AI creates day-by-day plans
-- **Context-aware** - Considers your pace and interests
-- **Smart suggestions** - Optimized routes and timing
-- **Personalized experiences** - Unique to your preferences
+**How Storyblok is Used:**
+- All travel content stored in Storyblok with structured schemas
+- Content Delivery API for real-time frontend fetching
+- Management API for automated content creation via scripts
+- Relationships between content types (collections → places)
+- Easy updates without code deployment
 
-### ⚡ Real-time Content
-- **Storyblok webhooks** - Instant content updates
-- **Auto-indexing** - Changes appear immediately
-- **Live events** - Always up-to-date information
-- **Dynamic content** - Fresh recommendations
+### 🤖 **AI-Powered Trip Planning**
+- **GROQ AI (Llama 3.3 70B)** generates personalized itineraries
+- **Context-aware** - Uses real place data from Storyblok
+- **Day-by-day planning** based on preferences and dates
+- **Smart suggestions** with optimized routes and timing
 
-### 🌍 Global & Accessible
-- **Multi-country support** - Explore the world
-- **Searchable filters** - Find any destination
-- **Accessibility features** - Inclusive design
-- **Mobile-optimized** - Perfect for travelers
+### 🗺️ **Interactive Maps**
+- **Leaflet maps** with marker clustering
+- **Visual discovery** - See all places on the map
+- **Click for details** - Popups with place information
+- **Geo-location** - Distance-based results
+
+### 🌍 **Global Coverage**
+- **48+ Places** across 6 countries
+- 🇮🇳 India • 🇺🇸 USA • 🇨🇳 China • 🇳🇿 New Zealand • 🇿🇦 South Africa • 🇵🇹 Portugal
+- **Curated collections** - Museums, Parks, Landmarks, Hidden Gems
+- **Travel guides** with local tips and recommendations
 
 ## Development Progress
 
@@ -174,28 +192,99 @@ atlasgo/
    - Search: http://localhost:3000/search
    - Admin: http://localhost:3000/admin
 
-## Documentation
+## 🏗️ **How It's Built**
 
-- **Setup:** `storyblok/SETUP_INSTRUCTIONS.md`
-- **Webhooks:** `docs/WEBHOOK_SETUP.md`
-- **Deployment:** `docs/DEPLOYMENT.md`
-- **Demo Script:** `docs/DEMO_SCRIPT.md`
-- **Checklist:** `docs/ACCEPTANCE_CHECKLIST.md`
+### **Architecture Overview**
 
-## 🚀 New Features for Competition
+```
+┌─────────────┐      ┌──────────────┐      ┌─────────────┐
+│  Storyblok  │─────▶│   Next.js    │◀─────│   Algolia   │
+│     CMS     │      │   Frontend   │      │   Search    │
+└─────────────┘      └──────────────┘      └─────────────┘
+      │                      │                      │
+      │                      │                      │
+      ▼                      ▼                      ▼
+  Content API          User Interface         Search API
+  Management API       Components             Geo-Search
+  Webhooks            AI Integration          Facets
+```
 
-See `COMPETITION_FEATURES.md` for detailed feature proposals including:
-- Visual search & image recognition
-- Weather-aware recommendations
-- Collaborative trip planning
-- AR place preview
-- Offline PWA mode
-- And 10+ more innovative features!
+### **Content Flow**
 
-## Contributing
+1. **Content Creation** → Content editors create/update places in Storyblok
+2. **API Delivery** → Next.js fetches content via Storyblok API
+3. **Search Indexing** → Custom pipeline syncs Storyblok → Algolia
+4. **User Search** → Algolia returns instant, relevant results
+5. **Display** → Next.js renders content with maps and AI features
 
-This project was built for the **Storyblok & Algolia Code & Coffee Hackathon 2025**.
+### **Key Integrations**
 
-## License
+**Storyblok + Next.js:**
+- Content Delivery API for SSR/SSG
+- Dynamic routing for place pages
+- Real-time content updates
+- Image optimization via Storyblok CDN
 
-MIT
+**Algolia + Next.js:**
+- React InstantSearch components
+- Custom search UI with filters
+- Geo-search with coordinates
+- Real-time search as you type
+
+**Storyblok + Algolia:**
+- Automated sync pipeline
+- Reindex on content changes
+- Structured data transformation
+- Webhook integration (future)
+
+## 📊 **Content Statistics**
+
+- **48 Places** across 6 countries
+- **2 Travel Guides** (Lisbon, NYC)
+- **2 Local Tips** sections
+- **4 Featured Collections**
+- **4 Testimonials** with 5-star ratings
+- **2 FAQ Sections** (8 questions)
+- **Total: 70+ content items**
+
+## 🚀 **Scripts & Commands**
+
+```bash
+npm run dev              # Start development server
+npm run build            # Build for production
+npm run start            # Start production server
+npm run reindex          # Reindex all content to Algolia
+npm run add:places       # Add sample Lisbon places
+npm run add:global       # Add global places (6 countries)
+npm run add:sections     # Add travel guides & tips
+npm run add:features     # Add collections & testimonials
+```
+
+## 📝 **Documentation**
+
+- **Setup Guide:** `SETUP_GUIDE.md`
+- **Deployment:** `DEPLOYMENT_SUMMARY.md`
+- **Contributing:** `CONTRIBUTING.md`
+- **Storyblok Setup:** `storyblok/SETUP_INSTRUCTIONS.md`
+
+## 🏆 **Built For**
+
+**Storyblok & Algolia Hackathon 2025**
+
+This project demonstrates the power of combining:
+- Storyblok's flexible, headless CMS
+- Algolia's lightning-fast search
+- AI for personalization
+- Modern web technologies
+
+## 📧 **Contact**
+
+For questions or feedback about this project, please open an issue on GitHub.
+
+## 📄 **License**
+
+MIT License - see LICENSE file for details
+
+---
+
+**Powered by Storyblok CMS & Algolia Search** 🚀
