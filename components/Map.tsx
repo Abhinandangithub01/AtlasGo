@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
-import L from 'leaflet';
+import * as L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import 'leaflet.markercluster/dist/MarkerCluster.css';
 import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
@@ -46,7 +46,7 @@ export default function Map({
   height = '500px',
   enableClustering = true,
 }: MapProps) {
-  const mapRef = useRef<L.Map | null>(null);
+  const mapRef = useRef<any>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -61,7 +61,7 @@ export default function Map({
         }
 
         // Initialize map
-        const map = L.map(mapContainerRef.current, {
+        const map = (L as any).map(mapContainerRef.current, {
           zoomControl: true,
           attributionControl: true,
         }).setView(center, zoom);
@@ -69,7 +69,7 @@ export default function Map({
         mapRef.current = map;
 
         // Add tile layer (OpenStreetMap)
-        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        (L as any).tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
           maxZoom: 19,
         }).addTo(map);
@@ -101,8 +101,8 @@ export default function Map({
     import('leaflet.markercluster').then((MarkerCluster) => {
       try {
         // Clear existing markers
-        map.eachLayer((layer) => {
-          if (layer instanceof L.Marker || (layer as any).clearLayers) {
+        map.eachLayer((layer: any) => {
+          if (layer instanceof (L as any).Marker || (layer as any).clearLayers) {
             map.removeLayer(layer);
           }
         });
@@ -122,7 +122,7 @@ export default function Map({
 
           places.forEach((place) => {
             try {
-              const marker = L.marker([place.lat, place.lng]);
+              const marker = (L as any).marker([place.lat, place.lng]);
               
               const popupContent = `
                 <div style="min-width: 200px;">
@@ -154,7 +154,7 @@ export default function Map({
         // Add markers without clustering
         places.forEach((place) => {
           try {
-            const marker = L.marker([place.lat, place.lng]);
+            const marker = (L as any).marker([place.lat, place.lng]);
             
             const popupContent = `
               <div style="min-width: 200px;">
@@ -174,7 +174,7 @@ export default function Map({
 
         // Fit bounds to show all markers
         if (places.length > 0) {
-          const bounds = L.latLngBounds(places.map(p => [p.lat, p.lng]));
+          const bounds = (L as any).latLngBounds(places.map(p => [p.lat, p.lng]));
           map.fitBounds(bounds, { padding: [50, 50] });
         }
       }
