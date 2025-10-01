@@ -9,12 +9,19 @@ export default function SortBy() {
   
   const { currentRefinement, options, refine } = useSortBy({
     items: [
-      { label: 'Most Relevant', value: 'places', icon: '🎯' },
-      { label: 'Highest Rated', value: 'places_rating_desc', icon: '⭐' },
-      { label: 'Most Popular', value: 'places_popularity_desc', icon: '🔥' },
-      { label: 'Nearest First', value: 'places', icon: '📍' },
+      { label: 'Most Relevant', value: 'places' },
+      { label: 'Highest Rated', value: 'places_rating_desc' },
+      { label: 'Most Popular', value: 'places_popularity_desc' },
+      { label: 'Nearest First', value: 'places' },
     ],
   });
+
+  // Custom icons for each sort option
+  const sortIcons: Record<string, string> = {
+    'places': '🎯',
+    'places_rating_desc': '⭐',
+    'places_popularity_desc': '🔥',
+  };
 
   // Close dropdown when clicking outside
   useEffect(() => {
@@ -70,7 +77,7 @@ export default function SortBy() {
                       : 'hover:bg-gray-50 text-gray-900'
                   }`}
                 >
-                  <span className="text-lg">{(option as any).icon}</span>
+                  <span className="text-lg">{sortIcons[option.value] || '🎯'}</span>
                   <span className="font-medium text-sm">{option.label}</span>
                   {currentRefinement === option.value && (
                     <svg className="w-4 h-4 ml-auto text-blue-600" fill="currentColor" viewBox="0 0 20 20">
