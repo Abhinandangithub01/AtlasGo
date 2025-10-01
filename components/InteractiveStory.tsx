@@ -89,7 +89,9 @@ export default function InteractiveStory({ title, subtitle, sections, placeSlug 
       {sections.map((section, index) => (
         <div
           key={index}
-          ref={(el) => (sectionRefs.current[index] = el)}
+          ref={(el) => {
+            sectionRefs.current[index] = el;
+          }}
           className={`transition-opacity duration-1000 ${
             activeSection === index ? 'opacity-100' : 'opacity-70'
           }`}
