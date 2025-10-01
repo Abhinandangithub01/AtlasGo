@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CitySense - Your city, your way",
-  description: "Instantly searchable personalized travel guide",
+  title: 'AtlasGo - Explore the World, Your Way',
+  description: 'Your intelligent travel companion - discover amazing places worldwide with AI-powered search and personalized itineraries',
 };
 
 export default function RootLayout({

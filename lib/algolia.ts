@@ -27,6 +27,7 @@ export function transformPlaceToRecord(place: Place): AlgoliaPlaceRecord {
     type: place.type,
     district: place.district || null,
     city: place.city || null,
+    country: place.country || null,
     short_excerpt: place.short_excerpt,
     description: place.description,
     tags: place.tags || [],

@@ -27,13 +27,15 @@ async function configureSettings() {
         'description',
         'district',
         'city',
+        'country',
       ],
 
       // Attributes for faceting (filtering)
       attributesForFaceting: [
+        'searchable(country)',
+        'searchable(city)',
         'filterOnly(type)',
         'filterOnly(district)',
-        'filterOnly(city)',
         'filterOnly(price_range)',
         'searchable(tags)',
       ],
@@ -64,6 +66,7 @@ async function configureSettings() {
         'type',
         'district',
         'city',
+        'country',
         'short_excerpt',
         'tags',
         'price_range',
@@ -101,7 +104,7 @@ async function configureSettings() {
       // No additional configuration needed
 
       // Advanced settings
-      removeWordsIfNoResults: 'lastWords',
+      removeWordsIfNoResults: 'lastWords' as const,
       disableTypoToleranceOnAttributes: [],
       separatorsToIndex: '',
       
@@ -118,42 +121,42 @@ async function configureSettings() {
     const synonyms = [
       {
         objectID: 'museum-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['museum', 'museu', 'museo', 'gallery'],
       },
       {
         objectID: 'restaurant-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['restaurant', 'restaurante', 'dining', 'eatery', 'cafe', 'bistro'],
       },
       {
         objectID: 'park-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['park', 'parque', 'garden', 'jardim', 'green space'],
       },
       {
         objectID: 'nightlife-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['nightlife', 'bar', 'club', 'disco', 'pub', 'lounge'],
       },
       {
         objectID: 'shopping-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['shopping', 'store', 'shop', 'loja', 'market', 'mall'],
       },
       {
         objectID: 'castle-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['castle', 'castelo', 'fort', 'fortress', 'palace', 'palacio'],
       },
       {
         objectID: 'beach-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['beach', 'praia', 'shore', 'coast', 'waterfront'],
       },
       {
         objectID: 'church-synonyms',
-        type: 'synonym',
+        type: 'synonym' as const,
         synonyms: ['church', 'igreja', 'cathedral', 'chapel', 'basilica'],
       },
     ];
@@ -172,7 +175,7 @@ async function configureSettings() {
         conditions: [
           {
             pattern: '{facet:type}',
-            anchoring: 'contains',
+            anchoring: 'contains' as const,
           },
         ],
         consequence: {

@@ -29,14 +29,35 @@ async function reindex() {
 
     // Fetch all places from Storyblok
     console.log('📚 Fetching places from Storyblok...');
-    const response = await storyblok.get('cdn/stories', {
-      version: 'draft',
-      starts_with: 'places/',
-      per_page: 100,
-    });
+    
+    // Fetch ALL stories with component 'place'
+    let allStories: any[] = [];
+    let page = 1;
+    let hasMore = true;
+    
+    while (hasMore) {
+      const response = await storyblok.get('cdn/stories', {
+        version: 'published',
+        filter_query: {
+          component: {
+            in: 'place'
+          }
+        },
+        per_page: 100,
+        page: page,
+      });
+      
+      const stories = response.data.stories;
+      allStories = allStories.concat(stories);
+      
+      // Check if there are more pages
+      const total = response.total;
+      hasMore = allStories.length < total;
+      page++;
+    }
 
-    const stories = response.data.stories;
-    console.log(`✅ Found ${stories.length} stories in places/ folder\n`);
+    console.log(`✅ Found ${allStories.length} place stories\n`);
+    const stories = allStories;
 
     if (stories.length === 0) {
       console.log('⚠️  No places found in Storyblok');
@@ -54,7 +75,14 @@ async function reindex() {
         type: content.type || 'attraction',
         district: content.district || '',
         city: content.city || 'Lisbon',
+        country: content.country || 'Portugal',
         short_excerpt: content.short_excerpt || '',
+        description: content.description || '',
+        tags: content.tags || [],
+        price_range: content.price_range || null,
+        rating: parseFloat(content.rating || 4.0),
+        popularity_score: parseInt(content.popularity_score || 50),
+        images: content.images?.map((img: any) => img.filename) || [],
         _geoloc: {
           lat: parseFloat(content.latitude || 0),
           lng: parseFloat(content.longitude || 0),

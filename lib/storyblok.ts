@@ -56,11 +56,31 @@ export async function getAllPlaces(): Promise<Place[]> {
 export async function getPlace(slug: string): Promise<Place | null> {
   try {
     const client = getStoryblokClient();
-    const response = await client.get(`cdn/stories/places/${slug}`, {
-      version: 'published',
-    });
-
-    return transformStoryToPlace(response.data.story);
+    
+    // Try places/ folder first (for old places)
+    try {
+      const response = await client.get(`cdn/stories/places/${slug}`, {
+        version: 'published',
+      });
+      return transformStoryToPlace(response.data.story);
+    } catch (folderError) {
+      // If not found in places/ folder, search by slug at root level
+      const searchResponse = await client.get('cdn/stories', {
+        version: 'published',
+        filter_query: {
+          component: {
+            in: 'place'
+          }
+        },
+        by_slugs: slug,
+      });
+      
+      if (searchResponse.data.stories && searchResponse.data.stories.length > 0) {
+        return transformStoryToPlace(searchResponse.data.stories[0]);
+      }
+      
+      return null;
+    }
   } catch (error) {
     console.error(`Error fetching place ${slug}:`, error);
     return null;
@@ -151,6 +171,7 @@ function transformStoryToPlace(story: any): Place {
     type: content.type || 'attraction',
     district: content.district || '',
     city: content.city || '',
+    country: content.country || 'Portugal',
     location: {
       lat: parseFloat(content.location?.lat || content.latitude || 0),
       lng: parseFloat(content.location?.lng || content.longitude || 0),

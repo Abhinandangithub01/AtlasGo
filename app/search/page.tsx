@@ -10,6 +10,7 @@ import SearchStats from '@/components/SearchStats';
 import GeoSearchButton from '@/components/GeoSearchButton';
 import Pagination from '@/components/Pagination';
 import PreferencesModal from '@/components/PreferencesModal';
+import SortBy from '@/components/SortBy';
 import Link from 'next/link';
 import { getUserPreferences, getOptionalFilters } from '@/lib/personalization';
 
@@ -29,8 +30,15 @@ export default function SearchPage() {
       <div className="bg-white shadow-md border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
-            <Link href="/" className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 transition">
-              CitySense
+            <Link href="/" className="flex items-center gap-3 hover:opacity-80 transition">
+              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center shadow-lg">
+                <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <span className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                AtlasGo
+              </span>
             </Link>
             <div className="flex gap-3">
               <button
@@ -85,29 +93,42 @@ export default function SearchPage() {
             <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
               Content managed by <span className="font-semibold text-purple-600">Storyblok</span> CMS, powered by <span className="font-semibold text-blue-600">Algolia</span>'s lightning-fast search
             </p>
-            <div className="max-w-3xl mx-auto">
+            
+            {/* Search Bar */}
+            <div className="max-w-6xl mx-auto mb-6">
               <SearchBox />
+            </div>
+            
+            {/* Filters */}
+            <div className="max-w-6xl mx-auto">
+              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200">
+                <SearchFilters />
+              </div>
             </div>
           </div>
 
           {/* Main Content */}
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-            {/* Sidebar - Filters */}
-            <aside className="lg:col-span-1">
-              <div className="bg-white rounded-xl shadow-md p-6 border border-gray-200 sticky top-4">
-                <div className="mb-6">
-                  <GeoSearchButton />
-                </div>
-                <SearchFilters />
-              </div>
-            </aside>
-
+          <div className="max-w-6xl mx-auto">
             {/* Results */}
-            <main className="lg:col-span-3">
-              <div className="mb-6">
-                <SearchStats />
+            <main>
+              {/* Trip Planning Tip */}
+              <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-200 rounded-lg p-4 mb-6 flex items-start gap-3">
+                <svg className="w-6 h-6 text-green-600 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-1">💡 Trip Planning Tip</h3>
+                  <p className="text-sm text-gray-900">
+                    Filter by <strong className="text-gray-900">Country</strong> and <strong className="text-gray-900">City</strong> to organize your destinations. 
+                    Use <strong className="text-gray-900">Preferences</strong> to personalize results, then click <strong className="text-gray-900">Plan Trip</strong> to generate an AI-powered itinerary!
+                  </p>
+                </div>
               </div>
+
+              {/* Search Results */}
               <SearchHits />
+              
+              {/* Pagination */}
               <div className="mt-8">
                 <Pagination />
               </div>

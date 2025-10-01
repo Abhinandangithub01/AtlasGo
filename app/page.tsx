@@ -1,6 +1,35 @@
+'use client';
+
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+  const [testimonials, setTestimonials] = useState<any[]>([]);
+  const [collections, setCollections] = useState<any[]>([]);
+
+  useEffect(() => {
+    async function fetchContent() {
+      try {
+        const response = await fetch(`https://api.storyblok.com/v2/cdn/stories?token=${process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN}&version=published&per_page=100`);
+        const result = await response.json();
+        
+        console.log('Fetched stories:', result.stories?.length);
+        
+        const testimonialItems = result.stories?.filter((s: any) => s.content.component === 'testimonial') || [];
+        const collectionItems = result.stories?.filter((s: any) => s.content.component === 'featured_collection' && s.content.featured) || [];
+        
+        console.log('Testimonials found:', testimonialItems.length);
+        console.log('Collections found:', collectionItems.length);
+        
+        setTestimonials(testimonialItems.slice(0, 3));
+        setCollections(collectionItems.slice(0, 4));
+      } catch (error) {
+        console.error('Error fetching content:', error);
+      }
+    }
+    fetchContent();
+  }, []);
+
   return (
     <main className="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50">
       {/* Hero Section */}
@@ -15,13 +44,13 @@ export default function Home() {
             </span>
           </div>
           <h1 className="text-7xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-6 tracking-tight">
-            CitySense
+            AtlasGo
           </h1>
           <p className="text-3xl text-gray-700 mb-4 font-normal">
-            Your city, your way — <span className="font-semibold text-blue-600">instantly searchable</span>
+            Explore the world, <span className="font-semibold text-blue-600">your way</span>
           </p>
           <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-            Discover amazing places with lightning-fast search, intelligent content management, and AI-powered itineraries
+            Your intelligent travel companion with lightning-fast search, smart recommendations, and AI-powered trip planning across the globe
           </p>
           <div className="flex gap-4 justify-center flex-wrap">
             <Link
@@ -213,6 +242,67 @@ export default function Home() {
             </div>
           </div>
         </div>
+
+        {/* Featured Collections */}
+        {collections.length > 0 && (
+          <div className="max-w-6xl mx-auto mb-20">
+            <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">Curated Collections</h2>
+            <p className="text-center text-gray-600 mb-10 text-lg">Discover handpicked destinations for every traveler</p>
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {collections.map((collection) => (
+                <Link
+                  key={collection.id}
+                  href="/search"
+                  className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all transform hover:-translate-y-1 border-2 border-gray-100 hover:border-blue-300"
+                >
+                  <div className="text-5xl mb-4">{collection.content.icon}</div>
+                  <h3 className="text-xl font-bold mb-2 text-gray-900">{collection.content.title}</h3>
+                  <p className="text-gray-600 text-sm mb-4">{collection.content.description}</p>
+                  <div className="flex items-center text-blue-600 font-semibold text-sm">
+                    Explore Collection
+                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Testimonials */}
+        {testimonials.length > 0 && (
+          <div className="max-w-6xl mx-auto mb-20">
+            <h2 className="text-4xl font-bold text-center mb-4 text-gray-900">What Travelers Say</h2>
+            <p className="text-center text-gray-600 mb-10 text-lg">Real experiences from our community</p>
+            <div className="grid md:grid-cols-3 gap-8">
+              {testimonials.map((testimonial) => (
+                <div key={testimonial.id} className="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+                  <div className="flex items-center mb-4">
+                    <img
+                      src={testimonial.content.avatar}
+                      alt={testimonial.content.name}
+                      className="w-14 h-14 rounded-full mr-4 object-cover"
+                    />
+                    <div>
+                      <h4 className="font-bold text-gray-900">{testimonial.content.name}</h4>
+                      <p className="text-sm text-gray-600">{testimonial.content.location}</p>
+                    </div>
+                  </div>
+                  <div className="flex mb-3">
+                    {[...Array(testimonial.content.rating)].map((_, i) => (
+                      <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                      </svg>
+                    ))}
+                  </div>
+                  <p className="text-gray-700 mb-3 leading-relaxed">{testimonial.content.text}</p>
+                  <p className="text-sm text-blue-600 font-semibold">{testimonial.content.trip}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* CTA Section */}
         <div className="max-w-4xl mx-auto text-center bg-gradient-to-r from-blue-600 to-purple-600 p-12 rounded-3xl shadow-2xl text-white">

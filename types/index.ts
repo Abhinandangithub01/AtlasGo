@@ -23,6 +23,7 @@ export interface Place {
   type: 'restaurant' | 'museum' | 'park' | 'nightlife' | 'shopping' | 'attraction' | 'event' | 'hotel';
   district: string;
   city: string;
+  country: string;
   location: GeoLocation;
   address: string;
   description: string;
@@ -83,6 +84,7 @@ export interface AlgoliaPlaceRecord {
   type: string;
   district: string | null;
   city: string | null;
+  country: string | null;
   short_excerpt: string;
   description: string;
   tags: string[];

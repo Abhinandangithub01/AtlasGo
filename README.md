@@ -1,10 +1,10 @@
-# CitySense - Personalized Travel Guide
+# AtlasGo - Explore the World, Your Way
 
-**Tagline:** Your city, your way — instantly searchable
+**Tagline:** Your intelligent travel companion
 
 ## Overview
 
-CitySense is a travel guide web app that stores district-level places in Storyblok, indexes them into Algolia (geo-enabled + faceted), surfaces results with a map + filters, personalizes results by user interests, and generates AI itineraries from top-ranked results.
+AtlasGo is an intelligent travel platform that combines the power of Storyblok's headless CMS, Algolia's lightning-fast search, and AI to create personalized global travel experiences. Discover amazing places worldwide with smart recommendations, real-time content, and AI-powered trip planning.
 
 - **Frontend:** Next.js 14 + TypeScript + Tailwind CSS
 - **CMS:** Storyblok
@@ -26,7 +26,7 @@ CitySense is a travel guide web app that stores district-level places in Storybl
 1. Clone the repository:
 ```bash
 git clone <your-repo-url>
-cd citysense
+cd atlasgo
 ```
 
 2. Install dependencies:
@@ -65,7 +65,7 @@ Open [http://localhost:3000](http://localhost:3000) to see the app.
 ## Project Structure
 
 ```
-citysense/
+atlasgo/
 ├── app/                    # Next.js 14 app directory
 │   ├── page.tsx           # Home page
 │   ├── search/            # Search page
@@ -82,33 +82,42 @@ citysense/
 
 ## Features
 
-### 1. Smart Search
-- Algolia-powered instant search
-- Geo-location based ranking
-- Faceted filtering (district, type, price range, tags)
-- Real-time results
+### 🔍 Smart Search & Discovery
+- **Lightning-fast search** - Algolia-powered instant results
+- **Geo-location ranking** - Find places near you
+- **Country/City/District hierarchy** - Organized global exploration
+- **Advanced filtering** - Type, price, tags, accessibility
+- **Multiple sort options** - Relevance, rating, popularity, distance
 
-### 2. Interactive Maps
-- Leaflet-based maps with clustered markers
-- District exploration
-- Place location visualization
-- Distance-based sorting
+### 🗺️ Interactive Maps
+- **Leaflet-based maps** with clustered markers
+- **District exploration** - Browse by neighborhood
+- **Real-time location** - Distance-based results
+- **Visual discovery** - See places on the map
 
-### 3. Personalization
-- User interest preferences
-- Tag-based result boosting
-- Customized search rankings
+### 🎯 Personalization
+- **User preferences** - Save your interests
+- **Smart recommendations** - AI-powered suggestions
+- **Customized rankings** - Results tailored to you
+- **Trip planning tips** - Contextual guidance
 
-### 4. AI Itinerary Generation
-- OpenAI-powered travel planning
-- Day-by-day itinerary creation
-- Context-aware recommendations
-- Personalized based on interests and pace
+### 🤖 AI-Powered Features
+- **Itinerary generation** - GROQ AI creates day-by-day plans
+- **Context-aware** - Considers your pace and interests
+- **Smart suggestions** - Optimized routes and timing
+- **Personalized experiences** - Unique to your preferences
 
-### 5. Real-time Content Updates
-- Storyblok webhook integration
-- Automatic Algolia reindexing
-- Near-instant content availability
+### ⚡ Real-time Content
+- **Storyblok webhooks** - Instant content updates
+- **Auto-indexing** - Changes appear immediately
+- **Live events** - Always up-to-date information
+- **Dynamic content** - Fresh recommendations
+
+### 🌍 Global & Accessible
+- **Multi-country support** - Explore the world
+- **Searchable filters** - Find any destination
+- **Accessibility features** - Inclusive design
+- **Mobile-optimized** - Perfect for travelers
 
 ## Development Progress
 
@@ -173,9 +182,19 @@ citysense/
 - **Demo Script:** `docs/DEMO_SCRIPT.md`
 - **Checklist:** `docs/ACCEPTANCE_CHECKLIST.md`
 
+## 🚀 New Features for Competition
+
+See `COMPETITION_FEATURES.md` for detailed feature proposals including:
+- Visual search & image recognition
+- Weather-aware recommendations
+- Collaborative trip planning
+- AR place preview
+- Offline PWA mode
+- And 10+ more innovative features!
+
 ## Contributing
 
-This project was built for the Storyblok Code & Coffee contest.
+This project was built for the **Storyblok & Algolia Code & Coffee Hackathon 2025**.
 
 ## License
 

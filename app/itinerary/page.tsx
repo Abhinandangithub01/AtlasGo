@@ -71,19 +71,24 @@ export default function ItineraryPage() {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <div className="bg-white shadow-sm border-b">
+      <div className="bg-white shadow-md border-b border-gray-200">
         <div className="container mx-auto px-4 py-4">
-          <Link href="/search" className="text-blue-600 hover:underline">
-            ← Back to Search
+          <Link href="/search" className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-50 to-purple-50 border-2 border-blue-200 rounded-lg hover:border-blue-300 transition-all text-gray-900 font-semibold">
+            <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+            </svg>
+            Back to Search
           </Link>
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8">
-        <h1 className="text-4xl font-bold mb-2 text-gray-900">Plan Your Perfect Trip</h1>
-        <p className="text-gray-600 mb-8">
-          AI-powered itinerary generator using real places from our database
-        </p>
+        <div className="mb-10">
+          <h1 className="text-5xl font-bold mb-3 text-gray-900">Plan Your Perfect Trip</h1>
+          <p className="text-lg text-gray-900 mb-2">
+            AI-powered itinerary generator using real places from our database
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Form */}
@@ -91,66 +96,68 @@ export default function ItineraryPage() {
             <form onSubmit={handleSubmit} className="bg-white rounded-lg shadow-md p-6 space-y-6">
               {/* City */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-bold text-gray-900 mb-2">
                   City
                 </label>
                 <input
                   type="text"
                   value={formData.city}
                   onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-900 font-medium"
                   required
                 />
               </div>
 
-              {/* Dates */}
+              {/* Dates - Single Row */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  Start Date
+                <label className="block text-sm font-bold text-gray-900 mb-2">
+                  Travel Dates
                 </label>
-                <input
-                  type="date"
-                  value={formData.dates?.start}
-                  onChange={(e) => setFormData({
-                    ...formData,
-                    dates: { ...formData.dates!, start: e.target.value },
-                  })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                  required
-                />
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
-                  End Date
-                </label>
-                <input
-                  type="date"
-                  value={formData.dates?.end}
-                  onChange={(e) => setFormData({
-                    ...formData,
-                    dates: { ...formData.dates!, end: e.target.value },
-                  })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                  required
-                />
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs text-gray-700 mb-1">Start Date</label>
+                    <input
+                      type="date"
+                      value={formData.dates?.start}
+                      onChange={(e) => setFormData({
+                        ...formData,
+                        dates: { ...formData.dates!, start: e.target.value },
+                      })}
+                      className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-900 text-sm"
+                      required
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs text-gray-700 mb-1">End Date</label>
+                    <input
+                      type="date"
+                      value={formData.dates?.end}
+                      onChange={(e) => setFormData({
+                        ...formData,
+                        dates: { ...formData.dates!, end: e.target.value },
+                      })}
+                      className="w-full px-3 py-2 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-900 text-sm"
+                      required
+                    />
+                  </div>
+                </div>
               </div>
 
               {/* Districts */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-bold text-gray-900 mb-3">
                   Districts (Optional)
                 </label>
                 <div className="space-y-2">
                   {['Alfama', 'Baixa', 'Chiado', 'Bairro Alto', 'Belém'].map((district) => (
-                    <label key={district} className="flex items-center">
+                    <label key={district} className="flex items-center cursor-pointer p-2 rounded-lg hover:bg-gray-50 transition">
                       <input
                         type="checkbox"
                         checked={formData.districts?.includes(district)}
                         onChange={() => toggleDistrict(district)}
-                        className="mr-2"
+                        className="mr-3 h-4 w-4 text-blue-600 rounded"
                       />
-                      <span className="text-sm">{district}</span>
+                      <span className="text-sm font-medium text-gray-900">{district}</span>
                     </label>
                   ))}
                 </div>
@@ -158,19 +165,19 @@ export default function ItineraryPage() {
 
               {/* Interests */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-bold text-gray-900 mb-3">
                   Interests
                 </label>
                 <div className="space-y-2">
                   {['food', 'culture', 'nature', 'nightlife', 'history', 'art'].map((interest) => (
-                    <label key={interest} className="flex items-center">
+                    <label key={interest} className="flex items-center cursor-pointer p-2 rounded-lg hover:bg-gray-50 transition">
                       <input
                         type="checkbox"
                         checked={formData.interests?.includes(interest)}
                         onChange={() => toggleInterest(interest)}
-                        className="mr-2"
+                        className="mr-3 h-4 w-4 text-blue-600 rounded"
                       />
-                      <span className="text-sm capitalize">{interest}</span>
+                      <span className="text-sm font-medium text-gray-900 capitalize">{interest}</span>
                     </label>
                   ))}
                 </div>
@@ -178,13 +185,13 @@ export default function ItineraryPage() {
 
               {/* Pace */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-bold text-gray-900 mb-2">
                   Travel Pace
                 </label>
                 <select
                   value={formData.pace}
                   onChange={(e) => setFormData({ ...formData, pace: e.target.value as any })}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
+                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 text-gray-900 font-medium cursor-pointer"
                 >
                   <option value="relaxed">Relaxed</option>
                   <option value="moderate">Moderate</option>

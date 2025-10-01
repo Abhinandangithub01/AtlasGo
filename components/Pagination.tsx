@@ -14,7 +14,7 @@ export default function Pagination() {
       <button
         onClick={() => refine(currentRefinement - 1)}
         disabled={currentRefinement === 0}
-        className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-gray-900 font-semibold"
         aria-label="Previous page"
       >
         ← Previous
@@ -24,10 +24,10 @@ export default function Pagination() {
         <button
           key={page}
           onClick={() => refine(page)}
-          className={`px-4 py-2 rounded-lg ${
+          className={`px-4 py-2 rounded-lg font-semibold ${
             currentRefinement === page
-              ? 'bg-blue-600 text-white'
-              : 'bg-white border border-gray-300 hover:bg-gray-50'
+              ? 'bg-blue-600 text-white shadow-md'
+              : 'bg-white border-2 border-gray-300 hover:bg-gray-50 text-gray-900'
           }`}
           aria-label={`Page ${page + 1}`}
           aria-current={currentRefinement === page ? 'page' : undefined}
@@ -39,7 +39,7 @@ export default function Pagination() {
       <button
         onClick={() => refine(currentRefinement + 1)}
         disabled={currentRefinement >= nbPages - 1}
-        className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+        className="px-4 py-2 bg-white border-2 border-gray-300 rounded-lg hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed text-gray-900 font-semibold"
         aria-label="Next page"
       >
         Next →
