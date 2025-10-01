@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p ${PORT:-3000}",
     "lint": "next lint",
+    "postinstall": "echo 'Dependencies installed successfully'",
     "reindex": "tsx scripts/reindex.ts",
     "algolia:settings": "tsx scripts/algolia-settings.ts",
     "setup:storyblok": "tsx scripts/setup-storyblok.ts",
