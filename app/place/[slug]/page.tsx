@@ -15,6 +15,7 @@ export default function PlacePage({ params }: { params: { slug: string } }) {
   const [loading, setLoading] = useState(true);
   const [addedToItinerary, setAddedToItinerary] = useState(false);
   const [cityGuides, setCityGuides] = useState<any[]>([]);
+  const [relatedBlogs, setRelatedBlogs] = useState<any[]>([]);
 
   useEffect(() => {
     async function fetchPlace() {
@@ -31,6 +32,20 @@ export default function PlacePage({ params }: { params: { slug: string } }) {
         } catch (error) {
           console.error('Error fetching city guides:', error);
         }
+      }
+      
+      // Fetch related blog posts
+      try {
+        const blogResponse = await fetch(`https://api.storyblok.com/v2/cdn/stories?token=${process.env.NEXT_PUBLIC_STORYBLOK_API_TOKEN}&version=published&filter_query[component][in]=blog_post&per_page=100`);
+        const blogResult = await blogResponse.json();
+        
+        // Filter blogs that have this place in related_places
+        const filtered = (blogResult.stories || []).filter((blog: any) => 
+          blog.content.related_places?.includes(params.slug)
+        );
+        setRelatedBlogs(filtered);
+      } catch (error) {
+        console.error('Error fetching related blogs:', error);
       }
     }
     fetchPlace();
@@ -451,6 +466,57 @@ export default function PlacePage({ params }: { params: { slug: string } }) {
                     );
                   })}
                 </div>
+              </div>
+            )}
+
+            {/* Related Blog Posts */}
+            {relatedBlogs.length > 0 && (
+              <div className="bg-gradient-to-br from-orange-50 to-yellow-50 rounded-lg shadow-md p-6 border-2 border-orange-200">
+                <h2 className="text-xl font-bold mb-4 text-gray-900 flex items-center gap-2">
+                  <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  Travel Stories About {place.title}
+                </h2>
+                <div className="space-y-4">
+                  {relatedBlogs.map((blog) => (
+                    <Link key={blog.id} href={`/blog/${blog.slug}`}>
+                      <div className="flex gap-4 p-4 bg-white rounded-lg hover:shadow-lg transition-all cursor-pointer">
+                        <img
+                          src={blog.content.hero_image}
+                          alt={blog.content.title}
+                          className="w-32 h-24 object-cover rounded-lg flex-shrink-0"
+                        />
+                        <div className="flex-1 min-w-0">
+                          <span className="text-xs font-semibold text-orange-600 uppercase">{blog.content.category}</span>
+                          <h3 className="font-bold text-gray-900 mt-1 mb-1 line-clamp-2">{blog.content.title}</h3>
+                          <p className="text-sm text-gray-600 line-clamp-2 mb-2">{blog.content.excerpt}</p>
+                          <div className="flex items-center gap-3 text-xs text-gray-500">
+                            <span className="flex items-center gap-1">
+                              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                              </svg>
+                              {blog.content.author}
+                            </span>
+                            <span>•</span>
+                            <span>{blog.content.reading_time} min read</span>
+                            <span>•</span>
+                            <span>{new Date(blog.content.published_date).toLocaleDateString()}</span>
+                          </div>
+                        </div>
+                        <svg className="w-5 h-5 text-orange-600 flex-shrink-0 mt-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                        </svg>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+                <Link href="/blog" className="mt-4 inline-flex items-center gap-2 text-orange-600 font-semibold hover:text-orange-700">
+                  View all travel stories
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </Link>
               </div>
             )}
           </div>

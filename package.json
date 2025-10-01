@@ -16,6 +16,8 @@
     "add:more": "tsx scripts/add-more-places.ts",
     "add:sections": "tsx scripts/add-content-sections.ts",
     "add:features": "tsx scripts/add-quick-features.ts",
+    "add:blog": "tsx scripts/add-blog-stories.ts",
+    "add:location-blogs": "tsx scripts/add-location-blogs.ts",
     "fix:places": "tsx scripts/fix-places-location.ts"
   },
   "dependencies": {
