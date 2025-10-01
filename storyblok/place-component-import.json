@@ -1,0 +1,114 @@
+{
+  "name": "place",
+  "display_name": "Place",
+  "schema": {
+    "title": {
+      "type": "text",
+      "required": true
+    },
+    "slug": {
+      "type": "text",
+      "required": true,
+      "translatable_slug": true
+    },
+    "type": {
+      "type": "option",
+      "options": [
+        {"value": "attraction", "name": "Attraction"},
+        {"value": "restaurant", "name": "Restaurant"},
+        {"value": "museum", "name": "Museum"},
+        {"value": "park", "name": "Park"},
+        {"value": "nightlife", "name": "Nightlife"},
+        {"value": "shopping", "name": "Shopping"}
+      ]
+    },
+    "district": {
+      "type": "text",
+      "required": true
+    },
+    "city": {
+      "type": "text",
+      "default_value": "Lisbon"
+    },
+    "latitude": {
+      "type": "number",
+      "required": true,
+      "decimals": 6
+    },
+    "longitude": {
+      "type": "number",
+      "required": true,
+      "decimals": 6
+    },
+    "short_excerpt": {
+      "type": "textarea",
+      "required": true,
+      "max_length": 200
+    },
+    "description": {
+      "type": "textarea",
+      "rich_markdown": true
+    },
+    "images": {
+      "type": "asset",
+      "filetypes": ["images"],
+      "maximum": 10
+    },
+    "tags": {
+      "type": "options",
+      "options": [
+        {"value": "food", "name": "Food"},
+        {"value": "culture", "name": "Culture"},
+        {"value": "nature", "name": "Nature"},
+        {"value": "nightlife", "name": "Nightlife"},
+        {"value": "family", "name": "Family"},
+        {"value": "shopping", "name": "Shopping"},
+        {"value": "history", "name": "History"},
+        {"value": "art", "name": "Art"},
+        {"value": "music", "name": "Music"},
+        {"value": "sports", "name": "Sports"},
+        {"value": "outdoor", "name": "Outdoor"},
+        {"value": "indoor", "name": "Indoor"}
+      ]
+    },
+    "price_range": {
+      "type": "option",
+      "options": [
+        {"value": "free", "name": "Free"},
+        {"value": "$", "name": "$"},
+        {"value": "$$", "name": "$$"},
+        {"value": "$$$", "name": "$$$"},
+        {"value": "$$$$", "name": "$$$$"}
+      ]
+    },
+    "rating": {
+      "type": "number",
+      "min_value": 0,
+      "max_value": 5,
+      "decimals": 1
+    },
+    "popularity_score": {
+      "type": "number",
+      "min_value": 0,
+      "max_value": 100
+    },
+    "estimated_visit_time": {
+      "type": "number",
+      "description": "In minutes"
+    },
+    "opening_hours": {
+      "type": "textarea"
+    },
+    "address": {
+      "type": "text"
+    },
+    "contact": {
+      "type": "text"
+    },
+    "website": {
+      "type": "text"
+    }
+  },
+  "is_root": true,
+  "is_nestable": false
+}

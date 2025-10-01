@@ -1,0 +1,83 @@
+{
+  "name": "itinerary_template",
+  "display_name": "Itinerary Template",
+  "schema": {
+    "name": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "required": true,
+      "description": "Template name"
+    },
+    "duration_days": {
+      "type": "number",
+      "pos": 1,
+      "required": true,
+      "default_value": "3",
+      "description": "Duration in days"
+    },
+    "pace": {
+      "type": "option",
+      "pos": 2,
+      "required": true,
+      "options": [
+        {
+          "value": "relaxed",
+          "name": "Relaxed"
+        },
+        {
+          "value": "moderate",
+          "name": "Moderate"
+        },
+        {
+          "value": "fast",
+          "name": "Fast-paced"
+        }
+      ],
+      "default_value": "moderate",
+      "description": "Travel pace"
+    },
+    "interests": {
+      "type": "options",
+      "pos": 3,
+      "options": [
+        {
+          "value": "food",
+          "name": "Food"
+        },
+        {
+          "value": "culture",
+          "name": "Culture"
+        },
+        {
+          "value": "nature",
+          "name": "Nature"
+        },
+        {
+          "value": "nightlife",
+          "name": "Nightlife"
+        },
+        {
+          "value": "family",
+          "name": "Family"
+        },
+        {
+          "value": "shopping",
+          "name": "Shopping"
+        }
+      ],
+      "description": "Target interests"
+    },
+    "suggested_places": {
+      "type": "options",
+      "pos": 4,
+      "source": "internal_stories",
+      "folder_slug": "places/",
+      "description": "Suggested places for this itinerary"
+    }
+  },
+  "is_root": true,
+  "is_nestable": false,
+  "real_name": "itinerary_template",
+  "component_group_uuid": null
+}

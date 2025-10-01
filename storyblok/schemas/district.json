@@ -1,0 +1,95 @@
+{
+  "name": "district",
+  "display_name": "District",
+  "schema": {
+    "name": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "required": true,
+      "description": "District name"
+    },
+    "city": {
+      "type": "text",
+      "pos": 1,
+      "required": true,
+      "default_value": "Lisbon",
+      "description": "City name"
+    },
+    "short_excerpt": {
+      "type": "textarea",
+      "pos": 2,
+      "translatable": true,
+      "required": true,
+      "max_length": 200,
+      "description": "Short description (max 200 chars)"
+    },
+    "description": {
+      "type": "richtext",
+      "pos": 3,
+      "translatable": true,
+      "description": "Full description with rich text"
+    },
+    "banner_image": {
+      "type": "asset",
+      "pos": 4,
+      "required": true,
+      "description": "Banner image for district"
+    },
+    "latitude": {
+      "type": "number",
+      "pos": 5,
+      "required": true,
+      "description": "Latitude coordinate (center of district)"
+    },
+    "longitude": {
+      "type": "number",
+      "pos": 6,
+      "required": true,
+      "description": "Longitude coordinate (center of district)"
+    },
+    "tags": {
+      "type": "options",
+      "pos": 7,
+      "options": [
+        {
+          "value": "historic",
+          "name": "Historic"
+        },
+        {
+          "value": "modern",
+          "name": "Modern"
+        },
+        {
+          "value": "trendy",
+          "name": "Trendy"
+        },
+        {
+          "value": "traditional",
+          "name": "Traditional"
+        },
+        {
+          "value": "residential",
+          "name": "Residential"
+        },
+        {
+          "value": "commercial",
+          "name": "Commercial"
+        },
+        {
+          "value": "waterfront",
+          "name": "Waterfront"
+        },
+        {
+          "value": "hillside",
+          "name": "Hillside"
+        }
+      ],
+      "description": "District characteristics"
+    }
+  },
+  "is_root": true,
+  "is_nestable": false,
+  "real_name": "district",
+  "component_group_uuid": null
+}

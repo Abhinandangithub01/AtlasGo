@@ -1,0 +1,283 @@
+{
+  "name": "place",
+  "display_name": "Place",
+  "schema": {
+    "title": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "required": true,
+      "description": "Name of the place"
+    },
+    "type": {
+      "type": "option",
+      "pos": 1,
+      "required": true,
+      "options": [
+        {
+          "value": "restaurant",
+          "name": "Restaurant"
+        },
+        {
+          "value": "museum",
+          "name": "Museum"
+        },
+        {
+          "value": "park",
+          "name": "Park"
+        },
+        {
+          "value": "nightlife",
+          "name": "Nightlife"
+        },
+        {
+          "value": "shopping",
+          "name": "Shopping"
+        },
+        {
+          "value": "attraction",
+          "name": "Attraction"
+        },
+        {
+          "value": "event",
+          "name": "Event"
+        },
+        {
+          "value": "hotel",
+          "name": "Hotel"
+        }
+      ],
+      "description": "Type of place"
+    },
+    "short_excerpt": {
+      "type": "textarea",
+      "pos": 2,
+      "translatable": true,
+      "required": true,
+      "max_length": 200,
+      "description": "Short description for search results (max 200 chars)"
+    },
+    "description": {
+      "type": "richtext",
+      "pos": 3,
+      "translatable": true,
+      "description": "Full description with rich text"
+    },
+    "district": {
+      "type": "text",
+      "pos": 4,
+      "required": true,
+      "description": "District name"
+    },
+    "city": {
+      "type": "text",
+      "pos": 5,
+      "required": true,
+      "default_value": "Lisbon",
+      "description": "City name"
+    },
+    "address": {
+      "type": "text",
+      "pos": 6,
+      "translatable": true,
+      "description": "Full address"
+    },
+    "latitude": {
+      "type": "number",
+      "pos": 7,
+      "required": true,
+      "description": "Latitude coordinate"
+    },
+    "longitude": {
+      "type": "number",
+      "pos": 8,
+      "required": true,
+      "description": "Longitude coordinate"
+    },
+    "tags": {
+      "type": "options",
+      "pos": 9,
+      "options": [
+        {
+          "value": "food",
+          "name": "Food"
+        },
+        {
+          "value": "culture",
+          "name": "Culture"
+        },
+        {
+          "value": "nature",
+          "name": "Nature"
+        },
+        {
+          "value": "nightlife",
+          "name": "Nightlife"
+        },
+        {
+          "value": "family",
+          "name": "Family"
+        },
+        {
+          "value": "shopping",
+          "name": "Shopping"
+        },
+        {
+          "value": "history",
+          "name": "History"
+        },
+        {
+          "value": "art",
+          "name": "Art"
+        },
+        {
+          "value": "music",
+          "name": "Music"
+        },
+        {
+          "value": "sports",
+          "name": "Sports"
+        },
+        {
+          "value": "outdoor",
+          "name": "Outdoor"
+        },
+        {
+          "value": "indoor",
+          "name": "Indoor"
+        }
+      ],
+      "description": "Interest tags"
+    },
+    "price_range": {
+      "type": "option",
+      "pos": 10,
+      "options": [
+        {
+          "value": "free",
+          "name": "Free"
+        },
+        {
+          "value": "$",
+          "name": "$ (Budget)"
+        },
+        {
+          "value": "$$",
+          "name": "$$ (Moderate)"
+        },
+        {
+          "value": "$$$",
+          "name": "$$$ (Expensive)"
+        },
+        {
+          "value": "$$$$",
+          "name": "$$$$ (Luxury)"
+        }
+      ],
+      "default_value": "$$",
+      "description": "Price range"
+    },
+    "rating": {
+      "type": "number",
+      "pos": 11,
+      "default_value": "4.0",
+      "description": "Rating (0-5)"
+    },
+    "popularity_score": {
+      "type": "number",
+      "pos": 12,
+      "default_value": "50",
+      "description": "Popularity score (0-100) for ranking"
+    },
+    "opening_hours": {
+      "type": "textarea",
+      "pos": 13,
+      "translatable": true,
+      "description": "Opening hours text"
+    },
+    "contact": {
+      "type": "text",
+      "pos": 14,
+      "description": "Contact phone/email"
+    },
+    "website": {
+      "type": "text",
+      "pos": 15,
+      "description": "Website URL"
+    },
+    "images": {
+      "type": "multiasset",
+      "pos": 16,
+      "description": "Place images"
+    },
+    "next_event_date": {
+      "type": "datetime",
+      "pos": 17,
+      "description": "Next event date (for events/special occasions)"
+    },
+    "estimated_visit_time": {
+      "type": "number",
+      "pos": 18,
+      "default_value": "60",
+      "description": "Estimated visit time in minutes"
+    },
+    "languages": {
+      "type": "options",
+      "pos": 19,
+      "options": [
+        {
+          "value": "en",
+          "name": "English"
+        },
+        {
+          "value": "pt",
+          "name": "Portuguese"
+        },
+        {
+          "value": "es",
+          "name": "Spanish"
+        },
+        {
+          "value": "fr",
+          "name": "French"
+        }
+      ],
+      "description": "Languages available"
+    },
+    "accessibility_features": {
+      "type": "options",
+      "pos": 20,
+      "options": [
+        {
+          "value": "wheelchair",
+          "name": "Wheelchair Accessible"
+        },
+        {
+          "value": "elevator",
+          "name": "Elevator"
+        },
+        {
+          "value": "parking",
+          "name": "Accessible Parking"
+        },
+        {
+          "value": "restroom",
+          "name": "Accessible Restroom"
+        },
+        {
+          "value": "audio_guide",
+          "name": "Audio Guide"
+        },
+        {
+          "value": "sign_language",
+          "name": "Sign Language Support"
+        }
+      ],
+      "description": "Accessibility features"
+    }
+  },
+  "is_root": false,
+  "is_nestable": true,
+  "real_name": "place",
+  "component_group_uuid": null
+}

@@ -1,0 +1,45 @@
+{
+  "name": "citysense",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "reindex": "tsx scripts/reindex.ts",
+    "algolia:settings": "tsx scripts/algolia-settings.ts",
+    "setup:storyblok": "tsx scripts/setup-storyblok.ts",
+    "test:storyblok": "tsx scripts/test-storyblok.ts",
+    "add:places": "tsx scripts/add-sample-places.ts",
+    "fix:places": "tsx scripts/fix-places-location.ts"
+  },
+  "dependencies": {
+    "@storyblok/react": "^3.0.10",
+    "storyblok-js-client": "^6.7.2",
+    "algoliasearch": "^4.23.3",
+    "react-instantsearch": "^7.7.4",
+    "react-instantsearch-hooks-web": "^6.47.3",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "react-leaflet": "^4.2.1",
+    "axios": "^1.6.8",
+    "next": "14.2.3",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@types/leaflet": "^1.9.11",
+    "typescript": "^5",
+    "tailwindcss": "^3.4.1",
+    "postcss": "^8",
+    "autoprefixer": "^10.0.1",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3",
+    "tsx": "^4.7.2",
+    "dotenv": "^16.4.5"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "city_guide",
+  "display_name": "City Guide",
+  "schema": {
+    "name": {
+      "type": "text",
+      "pos": 0,
+      "translatable": true,
+      "required": true,
+      "description": "City name"
+    },
+    "description": {
+      "type": "richtext",
+      "pos": 1,
+      "translatable": true,
+      "description": "City overview description"
+    },
+    "banner_image": {
+      "type": "asset",
+      "pos": 2,
+      "required": true,
+      "description": "City banner image"
+    },
+    "districts": {
+      "type": "options",
+      "pos": 3,
+      "source": "internal_stories",
+      "folder_slug": "districts/",
+      "description": "Link to district stories"
+    }
+  },
+  "is_root": true,
+  "is_nestable": false,
+  "real_name": "city_guide",
+  "component_group_uuid": null
+}
