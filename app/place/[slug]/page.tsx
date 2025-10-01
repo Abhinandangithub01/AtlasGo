@@ -7,6 +7,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import dynamic from 'next/dynamic';
 import { MapPlace } from '@/components/Map';
+import { trackPlaceVisit, getUserProgress } from '@/lib/gamification';
 
 const Map = dynamic(() => import('@/components/Map'), { ssr: false });
 
@@ -22,6 +23,11 @@ export default function PlacePage({ params }: { params: { slug: string } }) {
       const data = await getPlace(params.slug);
       setPlace(data);
       setLoading(false);
+      
+      // Track place visit for gamification
+      if (data) {
+        trackPlaceVisit(params.slug);
+      }
       
       // Fetch related city content
       if (data?.city) {

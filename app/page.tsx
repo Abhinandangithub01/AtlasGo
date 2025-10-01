@@ -80,6 +80,13 @@ export default function Home() {
               </svg>
               Travel Stories
             </Link>
+            <Link
+              href="/achievements"
+              className="bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-xl font-semibold hover:from-purple-700 hover:to-pink-700 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center gap-2"
+            >
+              <span className="text-xl">🏆</span>
+              Achievements
+            </Link>
           </div>
         </div>
 
