@@ -74,6 +74,7 @@ export default async function handler(
       title: story.content.title || story.name,
       slug: story.slug,
       type: story.content.type || 'attraction',
+      country: story.content.country || '',
       district: story.content.district || '',
       city: story.content.city || '',
       location: {
